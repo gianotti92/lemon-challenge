@@ -16,8 +16,11 @@ public class UserClient {
         this.userTranslator = userTranslator;
     }
 
-    public void save(User user) {
-
+    public User save(User user) {
         UserPersistenceDto userPersistenceDto = userTranslator.toPersistence(user);
+
+        userPersistenceDto = userRepository.save(userPersistenceDto);
+
+        return userTranslator.todDomain(userPersistenceDto);
     }
 }

@@ -1,17 +1,18 @@
-package com.lemon.wallet.user.dto;
+package com.lemon.wallet.user.model;
 
 import java.math.BigDecimal;
 
-public class WalletDto {
-    private CurrencyTypeDto currencyType;
+public class Wallet {
+
+    private CurrencyType currencyType;
     private BigDecimal amount;
 
-    public WalletDto(CurrencyTypeDto currencyType, BigDecimal amount) {
+    public Wallet(CurrencyType currencyType, BigDecimal amount) {
         this.currencyType = currencyType;
         this.amount = amount;
     }
 
-    public CurrencyTypeDto getCurrencyType() {
+    public CurrencyType getCurrencyType() {
         return currencyType;
     }
 

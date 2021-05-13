@@ -1,6 +1,6 @@
 package com.lemon.wallet.user.dto;
 
-public enum CurrencyType {
+public enum CurrencyTypeDto {
     ARS,
     BTC,
     USDT

@@ -14,6 +14,6 @@ public class UserService {
     }
 
     public User saveUser(User user) {
-        return null;
+        return userClient.save(user);
     }
 }

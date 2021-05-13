@@ -27,7 +27,7 @@ public class UserController {
 
     @PostMapping
     public UserDto createUser(@RequestBody UserDto userDto) {
-        return null;
+        return userAdapter.createUser(userDto);
     }
 
 }

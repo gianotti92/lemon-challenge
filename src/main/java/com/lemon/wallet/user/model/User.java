@@ -1,13 +1,13 @@
 package com.lemon.wallet.user.model;
 
 public class User {
-    private String id;
+    private Long id;
     private String name;
     private String lastName;
     private String alias;
     private String email;
 
-    public User(String id, String name, String lastName, String alias, String email) {
+    public User(Long id, String name, String lastName, String alias, String email) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -22,7 +22,7 @@ public class User {
         this.email = email;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
