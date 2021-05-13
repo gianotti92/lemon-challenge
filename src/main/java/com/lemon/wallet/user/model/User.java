@@ -1,24 +1,37 @@
 package com.lemon.wallet.user.model;
 
 public class User {
+    private String id;
     private String name;
-    private String surname;
+    private String lastName;
     private String alias;
     private String email;
 
-    public User(String name, String surname, String alias, String email) {
+    public User(String id, String name, String lastName, String alias, String email) {
+        this.id = id;
         this.name = name;
-        this.surname = surname;
+        this.lastName = lastName;
         this.alias = alias;
         this.email = email;
+    }
+
+    public User(String name, String lastName, String alias, String email) {
+        this.name = name;
+        this.lastName = lastName;
+        this.alias = alias;
+        this.email = email;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getAlias() {

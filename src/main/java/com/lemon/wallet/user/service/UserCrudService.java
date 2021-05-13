@@ -6,6 +6,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserCrudService {
 
+    private UserService userService;
+
+    public UserCrudService(UserService userService) {
+        this.userService = userService;
+    }
+
     public User createUser(User user) {
 
         return null;

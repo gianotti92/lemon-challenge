@@ -45,6 +45,11 @@
 			<artifactId>hibernate-search-orm</artifactId>
 			<version>5.11.9.Final</version>
 		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

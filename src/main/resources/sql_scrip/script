@@ -1,0 +1,8 @@
+create table user
+(
+	id BIGINT PRIMARY KEY ,
+	name varchar(30),
+	last_name varchar(30),
+	alias varchar(30) unique not null,
+	email varchar(30) unique not null
+);

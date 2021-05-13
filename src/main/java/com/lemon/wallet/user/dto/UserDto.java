@@ -5,14 +5,14 @@ import java.util.List;
 public class UserDto {
 
     private String name;
-    private String surname;
+    private String lastName;
     private String alias;
     private String email;
     private List<WalletDto> walletBalance;
 
-    public UserDto(String name, String surname, String alias, String email, List<WalletDto> walletBalance) {
+    public UserDto(String name, String lastName, String alias, String email, List<WalletDto> walletBalance) {
         this.name = name;
-        this.surname = surname;
+        this.lastName = lastName;
         this.alias = alias;
         this.email = email;
         this.walletBalance = walletBalance;
@@ -22,8 +22,8 @@ public class UserDto {
         return name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getAlias() {
