@@ -1,9 +1,14 @@
 package com.lemon.wallet.dto;
 
-import com.lemon.wallet.model.TotalBalance;
+
+
+
+
+
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import java.util.List;
-import java.util.Map;
 
 public class UserDto {
 
