@@ -1,13 +1,16 @@
 package com.lemon.wallet.service;
 
 import com.lemon.wallet.exception.ApiException;
+import com.lemon.wallet.model.CurrencyType;
 import com.lemon.wallet.model.Transaction;
 import com.lemon.wallet.model.Wallet;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class TransactionService {
@@ -30,11 +33,24 @@ public class TransactionService {
             throw new ApiException(message);
         }
 
+        Map<CurrencyType, BigDecimal> mapFrom = createMap(walletsFrom);
+        Map<CurrencyType, BigDecimal> mapTo =createMap(walletsTo);
 
+        BigDecimal fromAmountInWallet = mapFrom.get(transaction.getCurrencyType());
+
+        if(fromAmountInWallet.compareTo(transaction.getAmount()) <= 0) {
+            throw new ApiException("lo valores estan mal"); //revisar  mensaje y exception
+        }
+
+        //realizar movimiento
+
+        //persistir
+
+
+        //devolver movimiento con id
 
         return null;
     }
-
 
     private String areInvalidWallets(List<Wallet> from, List<Wallet> to, Long... ids) {
         StringBuilder sb = new StringBuilder();
@@ -50,4 +66,7 @@ public class TransactionService {
         return sb.toString();
     }
 
+    private Map<CurrencyType, BigDecimal> createMap(List<Wallet> wallets) {
+        return wallets.stream().collect(Collectors.toMap(Wallet::getCurrencyType, wallet -> wallet.getAmount()));
+    }
 }
