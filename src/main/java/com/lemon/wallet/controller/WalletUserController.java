@@ -5,7 +5,7 @@ import com.lemon.wallet.dto.UserDto;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/lemon/user-api/user")
+@RequestMapping("/lemon/challenge-api/user")
 public class WalletUserController {
 
     private final WalletUserAdapter walletUserAdapter;

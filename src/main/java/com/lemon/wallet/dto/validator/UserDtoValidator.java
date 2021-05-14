@@ -1,13 +1,12 @@
-package com.lemon.wallet.validator;
+package com.lemon.wallet.dto.validator;
 
-import antlr.StringUtils;
 import com.lemon.wallet.dto.UserDto;
 import com.lemon.wallet.exception.ApiException;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserRequestValidator {
+public class UserDtoValidator {
 
     public void validate(UserDto user) {
         StringBuilder sb = new StringBuilder();
