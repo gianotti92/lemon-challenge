@@ -20,10 +20,20 @@ public class WalletService {
 
     public List<Wallet> createWallets(User persistedUser) {
 
+        List<Wallet> walletsPersisted = persistenceWalletClient.findWallets(persistedUser.getId());
+
+        if(!walletsPersisted.isEmpty()) {
+            return walletsPersisted;
+        }
+
         Wallet btcWallet = new Wallet(CurrencyType.BTC, BigDecimal.ZERO, persistedUser);
         Wallet arsWallet = new Wallet(CurrencyType.ARS, BigDecimal.ZERO, persistedUser);
         Wallet usdtWallet = new Wallet(CurrencyType.USDT, BigDecimal.ZERO, persistedUser);
 
         return persistenceWalletClient.createWallets(persistedUser, btcWallet, arsWallet, usdtWallet);
+    }
+
+    public List<Wallet> findWallets(Long userId) {
+        return persistenceWalletClient.findWallets(userId);
     }
 }

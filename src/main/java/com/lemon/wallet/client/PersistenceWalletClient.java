@@ -17,12 +17,10 @@ public class PersistenceWalletClient {
 
     private final WalletRepository walletRepository;
     private final WalletTranslator walletTranslator;
-    private final UserRepository userRepository;
 
-    public PersistenceWalletClient(WalletRepository walletRepository, WalletTranslator walletTranslator, UserRepository userRepository) {
+    public PersistenceWalletClient(WalletRepository walletRepository, WalletTranslator walletTranslator) {
         this.walletRepository = walletRepository;
         this.walletTranslator = walletTranslator;
-        this.userRepository = userRepository;
     }
 
     public List<Wallet> createWallets(User user, Wallet... wallets) {
@@ -36,9 +34,15 @@ public class PersistenceWalletClient {
                 .collect(Collectors.toList());
     }
 
+    public List<Wallet> findWallets(Long userId) {
+        return walletRepository.findByUserId(userId).stream()
+                .map(w -> walletTranslator.toDomain(w, w.getUser())).collect(Collectors.toList());
+    }
+
     private Wallet save(WalletPersistenceDto walletPersistence) {
         walletPersistence = walletRepository.save(walletPersistence);
 
         return walletTranslator.toDomain(walletPersistence, walletPersistence.getUser());
     }
+
 }

@@ -6,8 +6,11 @@ import com.lemon.wallet.model.persistence.UserPersistenceDto;
 import com.lemon.wallet.repository.UserRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class PersistenceUserClient {
+
     private final UserRepository userRepository;
     private final UserTranslator userTranslator;
 
@@ -24,10 +27,15 @@ public class PersistenceUserClient {
         return userTranslator.toDomain(userPersistenceDto);
     }
 
-    public User find(Long id) {
-        //TODO: armar excepciones
-        UserPersistenceDto user = userRepository.findById(id).orElseThrow(RuntimeException::new);
+    public Optional<User> find(Long id) {
+        Optional<UserPersistenceDto> optionalUserPersistence = userRepository.findById(id);
 
-        return userTranslator.toDomain(user);
+        return optionalUserPersistence.map(userTranslator::toDomain);
+    }
+
+    public Optional<User> find(String email, String alias) {
+        Optional<UserPersistenceDto> optionalUserPersistence = userRepository.findByEmailAndAlias(email, alias);
+
+        return optionalUserPersistence.map(userTranslator::toDomain);
     }
 }
