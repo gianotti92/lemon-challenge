@@ -1,7 +1,7 @@
-package com.lemon.wallet.user.controller;
+package com.lemon.wallet.controller;
 
-import com.lemon.wallet.user.adapter.UserAdapter;
-import com.lemon.wallet.user.dto.UserDto;
+import com.lemon.wallet.adapter.UserAdapter;
+import com.lemon.wallet.dto.UserDto;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,10 +14,13 @@ public class UserController {
         this.userAdapter = userAdapter;
     }
 
+    @PostMapping
+    public UserDto createUser(@RequestBody UserDto userDto) {
+        return userAdapter.createUser(userDto);
+    }
     @GetMapping
     public UserDto getUsersByFilter() {
         return null;
-
     }
 
     @GetMapping("{/userId}")
@@ -25,9 +28,5 @@ public class UserController {
         return null;
     }
 
-    @PostMapping
-    public UserDto createUser(@RequestBody UserDto userDto) {
-        return userAdapter.createUser(userDto);
-    }
 
 }

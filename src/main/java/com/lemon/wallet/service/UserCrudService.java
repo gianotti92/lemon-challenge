@@ -1,7 +1,10 @@
-package com.lemon.wallet.user.service;
+package com.lemon.wallet.service;
 
-import com.lemon.wallet.user.model.User;
+import com.lemon.wallet.model.User;
+import com.lemon.wallet.model.Wallet;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserCrudService {
@@ -18,8 +21,8 @@ public class UserCrudService {
 
          User userPersisted = userService.saveUser(user);
 
+         walletService.createWallets(userPersisted);
 
-        walletService.createWallets(user);
-
+        return userPersisted;
     }
 }

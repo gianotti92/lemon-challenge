@@ -1,4 +1,4 @@
-package com.lemon.wallet.user.configuration;
+package com.lemon.wallet.configuration;
 
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;

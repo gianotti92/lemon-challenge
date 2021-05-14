@@ -1,9 +1,9 @@
-package com.lemon.wallet.user.adapter;
+package com.lemon.wallet.adapter;
 
-import com.lemon.wallet.user.dto.UserDto;
-import com.lemon.wallet.user.model.User;
-import com.lemon.wallet.user.service.UserCrudService;
-import com.lemon.wallet.user.translator.UserTranslator;
+import com.lemon.wallet.dto.UserDto;
+import com.lemon.wallet.model.User;
+import com.lemon.wallet.service.UserCrudService;
+import com.lemon.wallet.translator.UserTranslator;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,7 +19,7 @@ public class UserAdapter {
 
     public UserDto createUser(UserDto userDto) {
 
-        User user = userTranslator.todDomain(userDto);
+        User user = userTranslator.toDomain(userDto);
 
         return userTranslator.toDto(userCrudService.createUser(user));
     }

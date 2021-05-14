@@ -1,6 +1,6 @@
-package com.lemon.wallet.user.repository;
+package com.lemon.wallet.repository;
 
-import com.lemon.wallet.user.model.persistence.UserPersistenceDto;
+import com.lemon.wallet.model.persistence.UserPersistenceDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

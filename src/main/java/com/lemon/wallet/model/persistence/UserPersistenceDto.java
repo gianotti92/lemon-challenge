@@ -1,4 +1,4 @@
-package com.lemon.wallet.user.model.persistence;
+package com.lemon.wallet.model.persistence;
 
 import javax.persistence.*;
 

@@ -1,4 +1,4 @@
-package com.lemon.wallet.user.model;
+package com.lemon.wallet.model;
 
 public enum CurrencyType {
     ARS,

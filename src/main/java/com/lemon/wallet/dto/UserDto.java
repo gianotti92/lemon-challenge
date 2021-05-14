@@ -1,29 +1,21 @@
-package com.lemon.wallet.user.model;
+package com.lemon.wallet.dto;
 
-public class User {
+import java.util.List;
+
+public class UserDto {
+
     private Long id;
     private String name;
     private String lastName;
     private String alias;
     private String email;
 
-    public User(Long id, String name, String lastName, String alias, String email) {
+    public UserDto(Long id, String name, String lastName, String alias, String email) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.alias = alias;
         this.email = email;
-    }
-
-    public User(String name, String lastName, String alias, String email) {
-        this.name = name;
-        this.lastName = lastName;
-        this.alias = alias;
-        this.email = email;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getName() {
@@ -41,4 +33,5 @@ public class User {
     public String getEmail() {
         return email;
     }
+
 }

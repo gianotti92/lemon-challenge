@@ -1,4 +1,4 @@
-package com.lemon.wallet.user.dto;
+package com.lemon.wallet.dto;
 
 public enum CurrencyTypeDto {
     ARS,
