@@ -31,12 +31,14 @@ public class PersistenceWalletClient {
                 .map(w -> walletTranslator.toPersistence(w, user))
                 .collect(Collectors.toList());
 
-        return walletsToPersist.stream().map(w -> save(w, user)).collect(Collectors.toList());
+        return walletsToPersist.stream()
+                .map(this::save)
+                .collect(Collectors.toList());
     }
 
-    private Wallet save(WalletPersistenceDto walletPersistence, User user) {
+    private Wallet save(WalletPersistenceDto walletPersistence) {
         walletPersistence = walletRepository.save(walletPersistence);
 
-        return walletTranslator.toDomain(walletPersistence, user);
+        return walletTranslator.toDomain(walletPersistence, walletPersistence.getUser());
     }
 }

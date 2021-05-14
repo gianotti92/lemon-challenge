@@ -4,6 +4,7 @@ import com.lemon.wallet.model.User;
 import com.lemon.wallet.model.Wallet;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -17,12 +18,13 @@ public class UserCrudService {
         this.walletService = walletService;
     }
 
+    @Transactional(rollbackOn = Exception.class)
     public User createUser(User user) {
 
          User userPersisted = userService.saveUser(user);
 
-         walletService.createWallets(userPersisted);
+         List<Wallet> wallets = walletService.createWallets(userPersisted);
 
-        return userPersisted;
+         return userPersisted;
     }
 }

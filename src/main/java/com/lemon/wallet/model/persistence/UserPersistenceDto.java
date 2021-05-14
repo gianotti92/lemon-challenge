@@ -17,8 +17,8 @@ public class UserPersistenceDto {
     @Column(name ="email", unique = true, nullable = false)
     private String email;
 
-    public UserPersistenceDto(String name, String lastName, String alias, String email) {
-
+    public UserPersistenceDto(Long id, String name, String lastName, String alias, String email) {
+        this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.alias = alias;

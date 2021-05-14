@@ -1,8 +1,18 @@
 create table user
 (
-	id BIGINT PRIMARY KEY ,
+	id bigint primary key auto_increment,
 	name varchar(30),
 	last_name varchar(30),
 	alias varchar(30) unique not null,
 	email varchar(30) unique not null
+);
+
+
+create table wallet
+(
+	id bigint primary key auto_increment,
+	currency_type varchar(30) not null,
+	amount numeric not null ,
+	user_id bigint,
+	foreign key(user_id) references user(id)
 );

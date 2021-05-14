@@ -7,17 +7,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    private PersistenceUserClient persistenceUserClient;
+    private final PersistenceUserClient persistenceUserClient;
 
     public UserService(PersistenceUserClient persistenceUserClient) {
         this.persistenceUserClient = persistenceUserClient;
     }
 
-    public User find(Long id) {
-        return persistenceUserClient.find(id);
-    }
-
     public User saveUser(User user) {
         return persistenceUserClient.save(user);
+    }
+    public User find(Long id) {
+        return persistenceUserClient.find(id);
     }
 }
