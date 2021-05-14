@@ -30,12 +30,14 @@ public class TransactionService {
             throw new ApiException(message);
         }
 
+
+
         return null;
     }
 
+
     private String areInvalidWallets(List<Wallet> from, List<Wallet> to, Long... ids) {
         StringBuilder sb = new StringBuilder();
-
 
         if (from.isEmpty()) {
             sb.append(String.format("invalid wallet for userId:%s ", ids[0]));
