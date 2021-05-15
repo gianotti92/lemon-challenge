@@ -2,23 +2,28 @@ package com.lemon.wallet.adapter;
 
 import com.lemon.wallet.dto.TransactionDto;
 import com.lemon.wallet.model.Transaction;
-import com.lemon.wallet.service.TransactionService;
+import com.lemon.wallet.service.TransactionMovementService;
+import com.lemon.wallet.strategy.TransactionSelectionStrategy;
+import com.lemon.wallet.strategy.TransactionStrategy;
 import com.lemon.wallet.translator.TransactionTranslator;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TransactionAdapter {
     private final TransactionTranslator transactionTranslator;
-    private final TransactionService transactionService;
+    private final TransactionSelectionStrategy transactionSelectionStrategy;
 
-    public TransactionAdapter(TransactionService transactionService, TransactionTranslator transactionTranslator) {
-        this.transactionService = transactionService;
+    public TransactionAdapter(TransactionTranslator transactionTranslator,
+                              TransactionSelectionStrategy transactionSelectionStrategy) {
         this.transactionTranslator = transactionTranslator;
+        this.transactionSelectionStrategy = transactionSelectionStrategy;
     }
 
-    public TransactionDto createMovement(TransactionDto transactionDto) {
+    public TransactionDto createTransaction(TransactionDto transactionDto) {
         Transaction transaction = transactionTranslator.toDomain(transactionDto);
 
-        return transactionTranslator.toDto(transactionService.createMovement(transaction));
+        TransactionStrategy strategy = transactionSelectionStrategy.getStrategy(transaction.getTransactionType());
+
+        return transactionTranslator.toDto(strategy.createTransaction(transaction));
     }
 }

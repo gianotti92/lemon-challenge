@@ -10,25 +10,19 @@ public class TransactionDto {
     private LocalDateTime creationDate;
     private BigDecimal amount;
     private CurrencyTypeDto currencyType;
+    private TransactionTypeDto transactionType;
 
     private TransactionDto() {
     }
 
-    public TransactionDto(Long id, Long userFrom, Long userTo, BigDecimal amount, CurrencyTypeDto currencyType) {
-        this.id = id;
-        this.userFrom = userFrom;
-        this.userTo = userTo;
-        this.amount = amount;
-        this.currencyType = currencyType;
-    }
-
-    public TransactionDto(Long id, Long userFrom, Long userTo, BigDecimal amount, CurrencyTypeDto currencyType, LocalDateTime creationDate) {
+    public TransactionDto(Long id, Long userFrom, Long userTo, BigDecimal amount, CurrencyTypeDto currencyType, LocalDateTime creationDate, TransactionTypeDto transactionType) {
         this.id = id;
         this.userFrom = userFrom;
         this.userTo = userTo;
         this.amount = amount;
         this.currencyType = currencyType;
         this.creationDate = creationDate;
+        this.transactionType = transactionType;
     }
 
     public Long getId() {
@@ -53,5 +47,9 @@ public class TransactionDto {
 
     public CurrencyTypeDto getCurrencyType() {
         return currencyType;
+    }
+
+    public TransactionTypeDto getTransactionType() {
+        return transactionType;
     }
 }

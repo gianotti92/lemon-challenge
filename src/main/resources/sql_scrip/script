@@ -24,6 +24,7 @@ create table transaction
 	id_user_to bigint not null,
 	creation_date datetime not null,
 	amount numeric not null,
+	add transaction_type varchar(30) not null,
 	currency_type varchar(30) not null
 );
 

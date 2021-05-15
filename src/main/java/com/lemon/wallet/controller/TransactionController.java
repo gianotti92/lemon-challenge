@@ -2,6 +2,8 @@ package com.lemon.wallet.controller;
 
 import com.lemon.wallet.adapter.TransactionAdapter;
 import com.lemon.wallet.dto.TransactionDto;
+import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +20,10 @@ public class TransactionController {
     }
 
     @PostMapping
-    public TransactionDto createMovement(@RequestBody TransactionDto transaction) {
-        return transactionAdapter.createMovement(transaction);
+    public TransactionDto createTransaction(@RequestBody TransactionDto transaction) {
+        return transactionAdapter.createTransaction(transaction);
     }
+
+//    @GetMapping
+//    public List<TransactionDto> findTransactions(DeviceFilterDto deviceFilter)
 }

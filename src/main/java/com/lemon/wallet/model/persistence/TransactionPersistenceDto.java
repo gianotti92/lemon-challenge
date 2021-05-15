@@ -1,6 +1,7 @@
 package com.lemon.wallet.model.persistence;
 
 import com.lemon.wallet.model.CurrencyType;
+import com.lemon.wallet.model.TransactionType;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
@@ -34,21 +35,26 @@ public class TransactionPersistenceDto {
     @Enumerated(EnumType.STRING)
     @Column(name ="currency_type")
     private CurrencyType currencyType;
+    @Column(name = "transaction_type")
+    private TransactionType transactionType;
 
     public TransactionPersistenceDto() {
         //for hibernate
     }
 
     public TransactionPersistenceDto(Long userFrom,
-                                     Long userTo,
-                                     BigDecimal amount,
-                                     CurrencyType currencyType, LocalDateTime creationDate) {
+                                      Long userTo,
+                                      BigDecimal amount,
+                                      LocalDateTime creationDate,
+                                      CurrencyType currencyType, TransactionType transactionType) {
         this.userFrom = userFrom;
         this.userTo = userTo;
+        this.creationDate = creationDate;
         this.amount = amount;
         this.currencyType = currencyType;
-        this.creationDate = creationDate;
+        this.transactionType = transactionType;
     }
+
 
     public Long getId() {
         return id;
@@ -72,5 +78,9 @@ public class TransactionPersistenceDto {
 
     public CurrencyType getCurrencyType() {
         return currencyType;
+    }
+
+    public TransactionType getTransactionType() {
+        return transactionType;
     }
 }

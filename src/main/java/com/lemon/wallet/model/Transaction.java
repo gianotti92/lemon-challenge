@@ -10,22 +10,25 @@ public class Transaction {
     private LocalDateTime creationDate;
     private BigDecimal amount;
     private CurrencyType currencyType;
+    private TransactionType transactionType;
 
-    public Transaction(Long id, Long userFrom, Long userTo, BigDecimal amount, CurrencyType currencyType) {
+    public Transaction(Long id, Long userFrom, Long userTo, BigDecimal amount, CurrencyType currencyType, TransactionType transactionType) {
         this.id = id;
         this.userFrom = userFrom;
         this.userTo = userTo;
         this.amount = amount;
         this.currencyType = currencyType;
+        this.transactionType = transactionType;
     }
 
-    public Transaction(Long id, Long userFrom, Long userTo, BigDecimal amount, CurrencyType currencyType, LocalDateTime creationDate) {
+    public Transaction(Long id, Long userFrom, Long userTo, BigDecimal amount, CurrencyType currencyType, LocalDateTime creationDate, TransactionType transactionType) {
         this.id = id;
         this.userFrom = userFrom;
         this.userTo = userTo;
         this.amount = amount;
         this.currencyType = currencyType;
         this.creationDate = creationDate;
+        this.transactionType = transactionType;
     }
 
     public Long getId() {
@@ -50,5 +53,9 @@ public class Transaction {
 
     public CurrencyType getCurrencyType() {
         return currencyType;
+    }
+
+    public TransactionType getTransactionType() {
+        return transactionType;
     }
 }

@@ -4,24 +4,26 @@ import com.lemon.wallet.client.TransactionWalletClient;
 import com.lemon.wallet.exception.ApiException;
 import com.lemon.wallet.model.Transaction;
 import com.lemon.wallet.model.Wallet;
-import org.springframework.stereotype.Service;
+import com.lemon.wallet.strategy.TransactionStrategy;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
-public class TransactionService {
+@Component
+public class TransactionMovementService implements TransactionStrategy {
 
     private final WalletService WalletService;
     private final TransactionWalletClient transactionWalletClient;
 
-    public TransactionService(WalletService walletService, TransactionWalletClient transactionWalletClient) {
+    public TransactionMovementService(WalletService walletService, TransactionWalletClient transactionWalletClient) {
         WalletService = walletService;
         this.transactionWalletClient = transactionWalletClient;
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public Transaction createMovement(Transaction transaction) {
+    @Override
+    public Transaction createTransaction(Transaction transaction) {
 
         Wallet walletFrom = WalletService.findWallet(transaction.getUserFrom(), transaction.getCurrencyType());
 
