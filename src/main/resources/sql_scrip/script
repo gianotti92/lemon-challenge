@@ -16,3 +16,14 @@ create table wallet
 	user_id bigint,
 	foreign key(user_id) references user(id)
 );
+
+create table transaction
+(
+    id bigint primary key auto_increment,
+	id_user_from bigint not null,
+	id_user_to bigint not null,
+	creation_date datetime not null,
+	amount numeric not null,
+	currency_type varchar(30) not null
+);
+

@@ -4,11 +4,10 @@ import com.lemon.wallet.client.TransactionWalletClient;
 import com.lemon.wallet.exception.ApiException;
 import com.lemon.wallet.model.Transaction;
 import com.lemon.wallet.model.Wallet;
-import com.lemon.wallet.model.persistence.TransactionPersistenceDto;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TransactionService {
@@ -21,27 +20,28 @@ public class TransactionService {
         this.transactionWalletClient = transactionWalletClient;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public Transaction createMovement(Transaction transaction) {
 
         Wallet walletFrom = WalletService.findWallet(transaction.getUserFrom(), transaction.getCurrencyType());
 
         Wallet walletTo = WalletService.findWallet(transaction.getUserTo(), transaction.getCurrencyType());
 
-        BigDecimal fromAmountInWallet = walletFrom.getAmount();
+        validateBalance(transaction, walletFrom);
 
-        if(fromAmountInWallet.compareTo(transaction.getAmount()) < 0) {
-            throw new ApiException("lo valores estan mal"); //revisar  mensaje y exception
-        }
+        WalletService.updateSubtract(walletFrom, transaction);
 
-        //realizar movimiento
+        WalletService.updateAdd(walletTo, transaction);
 
-        walletFrom = WalletService.updateSubtract(walletFrom, transaction);
-
-        walletTo = WalletService.updateAdd(walletTo, transaction);
-
-
-        //persistir
         return transactionWalletClient.save(transaction);
     }
 
+    private void validateBalance(Transaction transaction, Wallet walletFrom) {
+        BigDecimal fromAmountInWallet = walletFrom.getAmount();
+
+        if(fromAmountInWallet.compareTo(transaction.getAmount()) < 0) {
+            throw new ApiException(String.format("The balance of user_id: %s, is incorrect for create a movement" ,
+                walletFrom.getUser().getId()));
+        }
+    }
 }

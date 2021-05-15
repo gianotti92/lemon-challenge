@@ -31,13 +31,6 @@ public class WalletPersistenceDto {
         this.user = user;
     }
 
-    public WalletPersistenceDto(CurrencyType currencyType, BigDecimal amount, UserPersistenceDto user) {
-        this.id = id;
-        this.currencyType = currencyType;
-        this.amount = amount;
-        this.user = user;
-    }
-
     public Long getId() {
         return id;
     }

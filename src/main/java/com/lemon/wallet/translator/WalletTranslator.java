@@ -28,7 +28,7 @@ public class WalletTranslator {
 
         UserPersistenceDto userPersistence = userTranslator.toPersistence(user);
 
-        return new WalletPersistenceDto(wallet.getCurrencyType(), wallet.getAmount(), userPersistence);
+        return new WalletPersistenceDto(wallet.getId(), wallet.getCurrencyType(), wallet.getAmount(), userPersistence);
     }
 
     public Wallet toDomain(WalletPersistenceDto walletPersistence) {
