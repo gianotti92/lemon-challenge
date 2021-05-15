@@ -42,6 +42,10 @@ public class TransactionMovementService implements TransactionStrategy {
     private void validateBalance(Transaction transaction, Wallet walletFrom) {
         BigDecimal fromAmountInWallet = walletFrom.getAmount();
 
+        if(transaction.getAmount().compareTo(BigDecimal.ZERO) < 0) {
+            throw new ApiException("The amount to move is invalid");
+        }
+
         if(fromAmountInWallet.compareTo(transaction.getAmount()) < 0) {
             throw new ApiException(String.format("The balance of user_id: %s, is incorrect for create a movement" ,
                 walletFrom.getUser().getId()));
