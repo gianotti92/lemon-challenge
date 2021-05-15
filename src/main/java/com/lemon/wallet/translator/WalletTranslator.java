@@ -31,9 +31,9 @@ public class WalletTranslator {
         return new WalletPersistenceDto(wallet.getCurrencyType(), wallet.getAmount(), userPersistence);
     }
 
-    public Wallet toDomain(WalletPersistenceDto walletPersistence, UserPersistenceDto userPersistence) {
+    public Wallet toDomain(WalletPersistenceDto walletPersistence) {
 
-       User user = userTranslator.toDomain(userPersistence);
+       User user = userTranslator.toDomain(walletPersistence.getUser());
 
         return new Wallet(walletPersistence.getId(), walletPersistence.getCurrencyType(),
                 walletPersistence.getAmount(), user);

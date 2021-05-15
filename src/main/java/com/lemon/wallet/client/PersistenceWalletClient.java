@@ -1,5 +1,7 @@
 package com.lemon.wallet.client;
 
+import com.lemon.wallet.exception.ApiException;
+import com.lemon.wallet.model.CurrencyType;
 import com.lemon.wallet.repository.WalletRepository;
 import com.lemon.wallet.translator.WalletTranslator;
 import com.lemon.wallet.model.User;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -36,13 +39,25 @@ public class PersistenceWalletClient {
 
     public List<Wallet> findWallets(Long userId) {
         return walletRepository.findByUserId(userId).stream()
-                .map(w -> walletTranslator.toDomain(w, w.getUser())).collect(Collectors.toList());
+                .map(walletTranslator::toDomain).collect(Collectors.toList());
+    }
+
+    public Wallet findWallet(Long userId, CurrencyType currencyType){
+        Optional<WalletPersistenceDto> optionalWalletPersistence
+                = walletRepository.findByUserIdAndCurrencyType(userId, currencyType);
+
+        return optionalWalletPersistence.map(walletTranslator::toDomain)
+                .orElseThrow(() -> new ApiException(String.format("Wallet not fund, for userId: %s", userId)));
+    }
+
+    public Wallet save(Wallet wallet){
+        return walletTranslator.toDomain(walletRepository.save(walletTranslator.toPersistence(wallet, wallet.getUser())));
     }
 
     private Wallet save(WalletPersistenceDto walletPersistence) {
         walletPersistence = walletRepository.save(walletPersistence);
 
-        return walletTranslator.toDomain(walletPersistence, walletPersistence.getUser());
+        return walletTranslator.toDomain(walletPersistence);
     }
 
 }

@@ -3,6 +3,7 @@ package com.lemon.wallet.translator;
 import com.lemon.wallet.dto.TransactionDto;
 import com.lemon.wallet.model.CurrencyType;
 import com.lemon.wallet.model.Transaction;
+import com.lemon.wallet.model.persistence.TransactionPersistenceDto;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -16,6 +17,14 @@ public class TransactionTranslator {
     }
 
     public TransactionDto toDto(Transaction movement) {
+        return null;
+    }
+
+    public TransactionPersistenceDto toPersistence(Transaction transaction) {
+        return null;
+    }
+
+    public Transaction toDomain(TransactionPersistenceDto transactionPersisted) {
         return null;
     }
 }
