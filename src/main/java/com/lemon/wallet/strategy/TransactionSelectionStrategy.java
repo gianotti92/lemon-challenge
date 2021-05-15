@@ -6,9 +6,9 @@ import com.lemon.wallet.model.TransactionType;
 import com.lemon.wallet.service.TransactionDepositMovementService;
 import com.lemon.wallet.service.TransactionMovementService;
 import java.util.Map;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class TransactionSelectionStrategy {
 
     private Map<TransactionType,TransactionStrategy> strategyMap;

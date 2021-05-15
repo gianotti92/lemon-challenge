@@ -20,11 +20,11 @@ create table wallet
 create table transaction
 (
     id bigint primary key auto_increment,
-	id_user_from bigint not null,
+	id_user_from bigint null,
 	id_user_to bigint not null,
 	creation_date datetime not null,
 	amount numeric not null,
-	add transaction_type varchar(30) not null,
+	transaction_type varchar(30) not null,
 	currency_type varchar(30) not null
 );
 

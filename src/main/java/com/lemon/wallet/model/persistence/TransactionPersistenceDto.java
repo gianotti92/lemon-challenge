@@ -35,6 +35,7 @@ public class TransactionPersistenceDto {
     @Enumerated(EnumType.STRING)
     @Column(name ="currency_type")
     private CurrencyType currencyType;
+    @Enumerated(EnumType.STRING)
     @Column(name = "transaction_type")
     private TransactionType transactionType;
 

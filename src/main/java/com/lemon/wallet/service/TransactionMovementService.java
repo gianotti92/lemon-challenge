@@ -5,12 +5,13 @@ import com.lemon.wallet.exception.ApiException;
 import com.lemon.wallet.model.Transaction;
 import com.lemon.wallet.model.Wallet;
 import com.lemon.wallet.strategy.TransactionStrategy;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Component
+@Service
 public class TransactionMovementService implements TransactionStrategy {
 
     private final WalletService WalletService;
