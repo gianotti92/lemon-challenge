@@ -1,13 +1,11 @@
 package com.lemon.wallet.dto;
 
-import java.math.BigDecimal;
-
 public class WalletDto {
     private Long id;
     private CurrencyTypeDto currencyType;
-    private BigDecimal amount;
+    private String amount;
 
-    public WalletDto(Long id, CurrencyTypeDto currencyType, BigDecimal amount) {
+    public WalletDto(Long id, CurrencyTypeDto currencyType, String amount) {
         this.id = id;
         this.currencyType = currencyType;
         this.amount = amount;
@@ -30,7 +28,7 @@ public class WalletDto {
         return currencyType;
     }
 
-    public BigDecimal getAmount() {
+    public String getAmount() {
         return amount;
     }
 }

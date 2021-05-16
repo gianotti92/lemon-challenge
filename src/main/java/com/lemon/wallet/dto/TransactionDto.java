@@ -1,6 +1,5 @@
 package com.lemon.wallet.dto;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class TransactionDto {
@@ -8,14 +7,14 @@ public class TransactionDto {
     private Long userFrom;
     private Long userTo;
     private LocalDateTime creationDate;
-    private BigDecimal amount;
+    private String amount;
     private CurrencyTypeDto currencyType;
     private TransactionTypeDto transactionType;
 
     private TransactionDto() {
     }
 
-    public TransactionDto(Long id, Long userFrom, Long userTo, BigDecimal amount, CurrencyTypeDto currencyType, LocalDateTime creationDate, TransactionTypeDto transactionType) {
+    public TransactionDto(Long id, Long userFrom, Long userTo, String amount, CurrencyTypeDto currencyType, LocalDateTime creationDate, TransactionTypeDto transactionType) {
         this.id = id;
         this.userFrom = userFrom;
         this.userTo = userTo;
@@ -54,7 +53,7 @@ public class TransactionDto {
         return creationDate;
     }
 
-    public BigDecimal getAmount() {
+    public String getAmount() {
         return amount;
     }
 

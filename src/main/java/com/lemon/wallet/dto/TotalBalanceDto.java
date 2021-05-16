@@ -1,15 +1,14 @@
 package com.lemon.wallet.dto;
 
-import com.lemon.wallet.model.CurrencyType;
 
 import java.math.BigDecimal;
 
 public class TotalBalanceDto {
 
     private CurrencyTypeDto currencyType;
-    private BigDecimal amount;
+    private String amount;
 
-    public TotalBalanceDto(CurrencyTypeDto currencyType, BigDecimal amount) {
+    public TotalBalanceDto(CurrencyTypeDto currencyType, String amount) {
         this.currencyType = currencyType;
         this.amount = amount;
     }
@@ -26,7 +25,7 @@ public class TotalBalanceDto {
         return currencyType;
     }
 
-    public BigDecimal getAmount() {
+    public String getAmount() {
         return amount;
     }
 

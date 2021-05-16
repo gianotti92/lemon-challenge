@@ -10,6 +10,7 @@ import com.lemon.wallet.model.TransactionFilter;
 import com.lemon.wallet.model.TransactionType;
 import com.lemon.wallet.model.persistence.TransactionPersistenceDto;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -25,12 +26,12 @@ public class TransactionTranslator {
 
     public Transaction toDomain(TransactionDto transactionDto) {
         return new Transaction(transactionDto.getId(), transactionDto.getUserFrom(),
-                transactionDto.getUserTo(), transactionDto.getAmount(), CurrencyType.valueOf(transactionDto.getCurrencyType().name()),
+                transactionDto.getUserTo(), new BigDecimal(transactionDto.getAmount()), CurrencyType.valueOf(transactionDto.getCurrencyType().name()),
                 TransactionType.valueOf(transactionDto.getTransactionType().name()));
     }
 
     public TransactionDto toDto(Transaction transaction) {
-        return new TransactionDto(transaction.getId(), transaction.getUserFrom(), transaction.getUserTo(), transaction.getAmount(),
+        return new TransactionDto(transaction.getId(), transaction.getUserFrom(), transaction.getUserTo(), transaction.getAmount().toPlainString(),
                 CurrencyTypeDto.valueOf(transaction.getCurrencyType().name()), transaction.getCreationDate(),
                 TransactionTypeDto.valueOf(transaction.getTransactionType().name()));
     }

@@ -4,6 +4,7 @@ import com.lemon.wallet.dto.CurrencyTypeDto;
 import com.lemon.wallet.dto.TotalBalanceDto;
 import com.lemon.wallet.dto.UserDto;
 import com.lemon.wallet.dto.WalletDto;
+import com.lemon.wallet.exception.ApiException;
 import com.lemon.wallet.model.TotalBalance;
 import com.lemon.wallet.model.User;
 import com.lemon.wallet.model.Wallet;
@@ -43,21 +44,21 @@ public class WalletTranslator {
 
         CurrencyTypeDto currencyType = CurrencyTypeDto.valueOf(wallet.getCurrencyType().name());
 
-        return new WalletDto(wallet.getId(), currencyType, wallet.getAmount());
+        return new WalletDto(wallet.getId(), currencyType, wallet.getAmount().toPlainString());
     }
 
     public UserDto toDto(List<Wallet> wallets) {
 
        List<TotalBalanceDto> totals = wallets.stream().map(this::createTotal).collect(Collectors.toList());
 
-       Optional<User> optionalUser  = wallets.stream().findAny().map(w -> w.getUser());
+       Optional<User> optionalUser  = wallets.stream().findAny().map(Wallet::getUser);
 
-       User user = optionalUser.orElseThrow(RuntimeException::new); //TODO: exception bien
+       User user = optionalUser.orElseThrow(() -> new ApiException("Invalid user for wallets. creating dto"));
 
        return new UserDto(user.getId(), user.getName(), user.getLastName(), user.getAlias(), user.getEmail(), totals);
     }
 
     private TotalBalanceDto createTotal(Wallet wallet) {
-        return new TotalBalanceDto(CurrencyTypeDto.valueOf(wallet.getCurrencyType().name()), wallet.getAmount());
+        return new TotalBalanceDto(CurrencyTypeDto.valueOf(wallet.getCurrencyType().name()), wallet.getAmount().toPlainString());
     }
 }
