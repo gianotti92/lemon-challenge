@@ -5,10 +5,12 @@ import com.lemon.wallet.model.CurrencyType;
 import com.lemon.wallet.model.Transaction;
 import com.lemon.wallet.model.Wallet;
 import com.lemon.wallet.model.User;
+import com.lemon.wallet.util.AmountUtil;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class WalletService {
@@ -35,7 +37,7 @@ public class WalletService {
     }
 
     public List<Wallet> findWallets(Long userId) {
-        return persistenceWalletClient.findWallets(userId);
+        return persistenceWalletClient.findWallets(userId).stream().map(AmountUtil::formatAmount).collect(Collectors.toList());
     }
 
     public Wallet findWallet(Long userId, CurrencyType currencyType) {

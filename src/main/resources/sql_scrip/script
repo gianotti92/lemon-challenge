@@ -12,7 +12,7 @@ create table wallet
 (
 	id bigint primary key auto_increment,
 	currency_type varchar(30) not null,
-	amount numeric not null ,
+	amount decimal(24,12) not null ,
 	user_id bigint,
 	foreign key(user_id) references user(id)
 );
@@ -23,7 +23,7 @@ create table transaction
 	id_user_from bigint null,
 	id_user_to bigint not null,
 	creation_date datetime not null,
-	amount numeric not null,
+	amount decimal(24,12) not null,
 	transaction_type varchar(30) not null,
 	currency_type varchar(30) not null
 );
