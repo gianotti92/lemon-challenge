@@ -51,7 +51,7 @@ public class WalletService {
         Wallet updatedWallet
                 = new Wallet(wallet.getId(), wallet.getCurrencyType(), updatedAmountToSave, wallet.getUser());
 
-        return persistenceWalletClient.save(updatedWallet);
+        return AmountUtil.formatAmount(persistenceWalletClient.save(updatedWallet));
     }
 
     public Wallet updateAdd(Wallet wallet, Transaction transaction) {
@@ -60,6 +60,6 @@ public class WalletService {
         Wallet updatedWallet
                 = new Wallet(wallet.getId(), wallet.getCurrencyType(), updatedAmountToSave, wallet.getUser());
 
-        return persistenceWalletClient.save(updatedWallet);
+        return AmountUtil.formatAmount(persistenceWalletClient.save(updatedWallet));
     }
 }
