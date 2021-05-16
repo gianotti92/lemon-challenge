@@ -7,29 +7,30 @@ public class TransactionFilterDto {
     private Integer offset;
     private Integer limit;
 
-    private TransactionFilterDto() {
+    public TransactionFilterDto() {
+        //for mapper
     }
 
-    private TransactionFilterDto(CurrencyTypeDto currencyTypeDto, TransactionTypeDto transactionTypeDto, Integer offset, Integer limit) {
+    public TransactionFilterDto(CurrencyTypeDto currencyTypeDto, TransactionTypeDto transactionTypeDto, Integer offset, Integer limit) {
         this.currencyTypeDto = currencyTypeDto;
         this.transactionTypeDto = transactionTypeDto;
         this.offset = offset;
         this.limit = limit;
     }
 
-    private CurrencyTypeDto getCurrencyTypeDto() {
+    public CurrencyTypeDto getCurrencyTypeDto() {
         return currencyTypeDto;
     }
 
-    private TransactionTypeDto getTransactionTypeDto() {
+    public TransactionTypeDto getTransactionTypeDto() {
         return transactionTypeDto;
     }
 
-    private Integer getOffset() {
+    public Integer getOffset() {
         return offset;
     }
 
-    private Integer getLimit() {
+    public Integer getLimit() {
         return limit;
     }
 }
