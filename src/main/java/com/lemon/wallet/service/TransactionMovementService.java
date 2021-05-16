@@ -1,6 +1,6 @@
 package com.lemon.wallet.service;
 
-import com.lemon.wallet.client.TransactionWalletClient;
+import com.lemon.wallet.client.PersistenceTransactionClient;
 import com.lemon.wallet.exception.ApiException;
 import com.lemon.wallet.model.Transaction;
 import com.lemon.wallet.model.Wallet;
@@ -15,11 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class TransactionMovementService implements TransactionStrategy {
 
     private final WalletService WalletService;
-    private final TransactionWalletClient transactionWalletClient;
+    private final PersistenceTransactionClient persistenceTransactionClient;
 
-    public TransactionMovementService(WalletService walletService, TransactionWalletClient transactionWalletClient) {
+    public TransactionMovementService(WalletService walletService, PersistenceTransactionClient persistenceTransactionClient) {
         WalletService = walletService;
-        this.transactionWalletClient = transactionWalletClient;
+        this.persistenceTransactionClient = persistenceTransactionClient;
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -36,7 +36,7 @@ public class TransactionMovementService implements TransactionStrategy {
 
         WalletService.updateAdd(walletTo, transaction);
 
-        return transactionWalletClient.save(transaction);
+        return persistenceTransactionClient.save(transaction);
     }
 
     private void validateBalance(Transaction transaction, Wallet walletFrom) {

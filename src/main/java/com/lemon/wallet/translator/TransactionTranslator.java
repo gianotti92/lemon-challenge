@@ -11,11 +11,17 @@ import com.lemon.wallet.model.TransactionType;
 import com.lemon.wallet.model.persistence.TransactionPersistenceDto;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
 @Component
 public class TransactionTranslator {
+
+    private static final String TRANSACTION_TYPE_DEFAULT = TransactionTypeDto.MOVEMENT.name();
+    private static final String CURRENCY_TYPE_DEFAULT = CurrencyTypeDto.ARS.name();
+    private static final int LIMIT_RESULT_DEFAULT = 10;
+    private static final int LIMIT_OFFSET_DEFAULT = 0;
 
     public Transaction toDomain(TransactionDto transactionDto) {
         return new Transaction(transactionDto.getId(), transactionDto.getUserFrom(),
@@ -41,7 +47,17 @@ public class TransactionTranslator {
     }
 
     public TransactionFilter toDomain(TransactionFilterDto filter) {
-        return new TransactionFilter(CurrencyType.valueOf(filter.getCurrencyTypeDto().name()),
-                TransactionType.valueOf(filter.getTransactionTypeDto().name()), filter.getOffset(), filter.getLimit());
+
+        var limit = Optional.ofNullable(filter.getLimit()).orElse(LIMIT_RESULT_DEFAULT);
+        var offset = Optional.ofNullable(filter.getOffset()).orElse(LIMIT_OFFSET_DEFAULT);
+
+        Optional<CurrencyTypeDto> optionalCurrencyType = Optional.ofNullable(filter.getCurrencyType());
+
+        Optional<TransactionTypeDto> optionalTransactionType = Optional.ofNullable(filter.getTransactionType());
+
+            return new TransactionFilter(CurrencyType.valueOf(optionalCurrencyType.map(CurrencyTypeDto::name).orElse(CURRENCY_TYPE_DEFAULT)),
+                    TransactionType.valueOf(optionalTransactionType.map(TransactionTypeDto::name).orElse(TRANSACTION_TYPE_DEFAULT)),
+                    offset, limit);
+
     }
 }

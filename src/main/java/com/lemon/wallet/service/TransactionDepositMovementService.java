@@ -1,6 +1,6 @@
 package com.lemon.wallet.service;
 
-import com.lemon.wallet.client.TransactionWalletClient;
+import com.lemon.wallet.client.PersistenceTransactionClient;
 import com.lemon.wallet.exception.ApiException;
 import com.lemon.wallet.model.Transaction;
 import com.lemon.wallet.model.Wallet;
@@ -14,11 +14,11 @@ import java.math.BigDecimal;
 public class TransactionDepositMovementService implements TransactionStrategy {
 
     private final WalletService walletService;
-    private final TransactionWalletClient transactionWalletClient;
+    private final PersistenceTransactionClient persistenceTransactionClient;
 
-    public TransactionDepositMovementService(WalletService walletService, TransactionWalletClient transactionWalletClient) {
+    public TransactionDepositMovementService(WalletService walletService, PersistenceTransactionClient persistenceTransactionClient) {
         this.walletService = walletService;
-        this.transactionWalletClient = transactionWalletClient;
+        this.persistenceTransactionClient = persistenceTransactionClient;
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -33,6 +33,6 @@ public class TransactionDepositMovementService implements TransactionStrategy {
 
          walletService.updateAdd(walletToDeposit, transaction);
 
-         return transactionWalletClient.save(transaction);
+         return persistenceTransactionClient.save(transaction);
     }
 }

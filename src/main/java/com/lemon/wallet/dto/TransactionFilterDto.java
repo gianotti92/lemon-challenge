@@ -2,8 +2,8 @@ package com.lemon.wallet.dto;
 
 public class TransactionFilterDto {
 
-    private CurrencyTypeDto currencyTypeDto;
-    private TransactionTypeDto transactionTypeDto;
+    private CurrencyTypeDto currencyType;
+    private TransactionTypeDto transactionType;
     private Integer offset;
     private Integer limit;
 
@@ -11,19 +11,12 @@ public class TransactionFilterDto {
         //for mapper
     }
 
-    public TransactionFilterDto(CurrencyTypeDto currencyTypeDto, TransactionTypeDto transactionTypeDto, Integer offset, Integer limit) {
-        this.currencyTypeDto = currencyTypeDto;
-        this.transactionTypeDto = transactionTypeDto;
-        this.offset = offset;
-        this.limit = limit;
+    public CurrencyTypeDto getCurrencyType() {
+        return currencyType;
     }
 
-    public CurrencyTypeDto getCurrencyTypeDto() {
-        return currencyTypeDto;
-    }
-
-    public TransactionTypeDto getTransactionTypeDto() {
-        return transactionTypeDto;
+    public TransactionTypeDto getTransactionType() {
+        return transactionType;
     }
 
     public Integer getOffset() {
@@ -32,5 +25,21 @@ public class TransactionFilterDto {
 
     public Integer getLimit() {
         return limit;
+    }
+
+    public void setCurrencyType(CurrencyTypeDto currencyType) {
+        this.currencyType = currencyType;
+    }
+
+    public void setTransactionType(TransactionTypeDto transactionType) {
+        this.transactionType = transactionType;
+    }
+
+    public void setOffset(Integer offset) {
+        this.offset = offset;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
     }
 }

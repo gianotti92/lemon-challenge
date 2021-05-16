@@ -1,6 +1,7 @@
 package com.lemon.wallet.adapter;
 
 import com.lemon.wallet.dto.TransactionDto;
+import com.lemon.wallet.dto.TransactionFilterDto;
 import com.lemon.wallet.model.Transaction;
 import com.lemon.wallet.service.TransactionFindService;
 import com.lemon.wallet.service.TransactionMovementService;
@@ -34,8 +35,8 @@ public class TransactionAdapter {
         return transactionTranslator.toDto(strategy.createTransaction(transaction));
     }
 
-    public List<TransactionDto> find(TransactionDto transaction) {
-        List<Transaction> transactions = transactionFindService.find(transactionTranslator.toDomain(transaction));
+    public List<TransactionDto> find(TransactionFilterDto filter) {
+        List<Transaction> transactions = transactionFindService.find(transactionTranslator.toDomain(filter));
 
         return transactions.stream().map(transactionTranslator::toDto).collect(Collectors.toList());
     }

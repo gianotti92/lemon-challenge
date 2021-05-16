@@ -5,6 +5,8 @@ import com.lemon.wallet.dto.TransactionDto;
 
 import java.util.List;
 
+import com.lemon.wallet.dto.TransactionFilterDto;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,7 +29,7 @@ public class TransactionController {
     }
 
     @GetMapping
-    public List<TransactionDto> findTransactions(TransactionDto transaction) {
-        return transactionAdapter.find(transaction);
+    public List<TransactionDto> findTransactions( TransactionFilterDto filter) {
+        return transactionAdapter.find(filter);
     }
 }

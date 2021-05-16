@@ -7,6 +7,9 @@ public class TransactionFilter {
     private Integer offset;
     private Integer limit;
 
+    public TransactionFilter() {
+    }
+
     public TransactionFilter(CurrencyType currencyType, TransactionType transactionType, Integer offset, Integer limit) {
         this.currencyType = currencyType;
         this.transactionType = transactionType;
