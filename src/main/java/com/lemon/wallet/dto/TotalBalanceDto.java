@@ -14,6 +14,14 @@ public class TotalBalanceDto {
         this.amount = amount;
     }
 
+    @Override
+    public String toString() {
+        return "TotalBalanceDto{" +
+                "currencyType=" + currencyType +
+                ", amount=" + amount +
+                '}';
+    }
+
     public CurrencyTypeDto getCurrencyType() {
         return currencyType;
     }

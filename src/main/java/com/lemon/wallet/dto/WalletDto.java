@@ -13,6 +13,15 @@ public class WalletDto {
         this.amount = amount;
     }
 
+    @Override
+    public String toString() {
+        return "WalletDto{" +
+                "id=" + id +
+                ", currencyType=" + currencyType +
+                ", amount=" + amount +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }

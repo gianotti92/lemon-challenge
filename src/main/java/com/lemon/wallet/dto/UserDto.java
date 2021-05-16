@@ -39,6 +39,18 @@ public class UserDto {
         this.totalBalance = totalBalance;
     }
 
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", alias='" + alias + '\'' +
+                ", email='" + email + '\'' +
+                ", totalBalance=" + totalBalance +
+                '}';
+    }
+
     public String getName() {
         return name;
     }

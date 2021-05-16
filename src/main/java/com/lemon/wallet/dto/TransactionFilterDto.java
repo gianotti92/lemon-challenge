@@ -11,6 +11,16 @@ public class TransactionFilterDto {
         //for mapper
     }
 
+    @Override
+    public String toString() {
+        return "TransactionFilterDto{" +
+                "currencyType=" + currencyType +
+                ", transactionType=" + transactionType +
+                ", offset=" + offset +
+                ", limit=" + limit +
+                '}';
+    }
+
     public CurrencyTypeDto getCurrencyType() {
         return currencyType;
     }

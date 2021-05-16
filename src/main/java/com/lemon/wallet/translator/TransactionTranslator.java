@@ -58,6 +58,5 @@ public class TransactionTranslator {
             return new TransactionFilter(CurrencyType.valueOf(optionalCurrencyType.map(CurrencyTypeDto::name).orElse(CURRENCY_TYPE_DEFAULT)),
                     TransactionType.valueOf(optionalTransactionType.map(TransactionTypeDto::name).orElse(TRANSACTION_TYPE_DEFAULT)),
                     offset, limit);
-
     }
 }
