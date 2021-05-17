@@ -28,3 +28,9 @@ create table transaction
 	currency_type varchar(30) not null
 );
 
+
+INSERT INTO user (name, last_name, alias, email) VALUES ('Lucas', 'Gian', 'lgian', 'luqui@sarlanga.com');
+INSERT INTO user (name, last_name, alias, email) VALUES ('Dani', 'Ruibal', 'Danilamas', 'dan@sarlanga.com');
+
+
+
